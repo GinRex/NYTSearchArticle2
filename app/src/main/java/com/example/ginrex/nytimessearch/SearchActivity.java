@@ -65,12 +65,12 @@ public class SearchActivity extends AppCompatActivity {
 
 
             Intent i = getIntent();
-            String date = i.getStringExtra("date");
-            int order = i.getIntExtra("order", 0);
-            int c1 = i.getIntExtra("c1", 0);
-            int c2 = i.getIntExtra("c2", 0);
-            int c3 = i.getIntExtra("c3", 0);
-            String queryr = i.getStringExtra("rquery");
+            String date = i.getExtras().getString("date");
+            int order = i.getExtras().getInt("order", 0);
+            int c1 = i.getExtras().getInt("c1");
+            int c2 = i.getExtras().getInt("c2");
+            int c3 = i.getExtras().getInt("c3");
+            String queryr = i.getExtras().getString("rquery");
             fetchArticle(queryr, date, order, c1, c2, c3);
 
         /*if (first == 0) {
@@ -103,9 +103,11 @@ public class SearchActivity extends AppCompatActivity {
             else params.put("sort", "oldest");
         }
 
-        if (c1 != 0) {params.put("fq=news_desk", "Arts");}
-        if (c2 != 0) {params.put("fq=news_desk", "Fashion & Style");}
-        if (c3 != 0) {params.put("fq=news_desk", "Sports");}
+        StringBuilder desklist = new StringBuilder();
+        if (c1 != 0) {desklist.append("Arts");}
+        if (c2 != 0) {desklist.append("Fashion & Style");}
+        if (c3 != 0) {desklist.append("Sports");}
+        if (desklist != null) {params.put("fq", desklist);}
 
         client.get(Url, params, new JsonHttpResponseHandler() {
 
