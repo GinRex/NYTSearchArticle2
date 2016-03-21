@@ -61,7 +61,7 @@ public class SearchActivity extends AppCompatActivity {
         });
 
 
-            fetchArticle(null, null, 0, 0, 0, 0);
+            //fetchArticle(null, null, 0, 0, 0, 0);
 
 
             Intent i = getIntent();
@@ -103,12 +103,13 @@ public class SearchActivity extends AppCompatActivity {
             else params.put("sort", "oldest");
         }
 
+        /*
         StringBuilder desklist = new StringBuilder();
         if (c1 != 0) {desklist.append("Arts");}
         if (c2 != 0) {desklist.append("Fashion & Style");}
         if (c3 != 0) {desklist.append("Sports");}
         if (desklist != null) {params.put("fq", desklist);}
-
+        */
         client.get(Url, params, new JsonHttpResponseHandler() {
 
             @Override
